@@ -1,4 +1,3 @@
 # GCStudy
-Goldbach's Conjeture Study
 
-Study of the conjeture.
+Estudio de la conjetura de Goldbach

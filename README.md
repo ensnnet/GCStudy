@@ -1,2 +1,3 @@
 # GCStudy
-Goldbach's Conjeture Study
+
+Estudio de la conjetura de Goldbach

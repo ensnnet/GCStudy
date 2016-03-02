@@ -1,0 +1,266 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  PLANTILLA PARA UN ARTÍCULO DE MATGAZINE  
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% El presente es un documento plantilla LaTeX para escribir artículos con el formato y estilo de Matgazine. 
+
+%  Los artículos se enviarán preferentemente a la dirección de correo electrónico matgazine@gmail.com. Se adjuntará el documento .tex, el documento compilado .pdf y las figuras en formatos .jpg, .png, .pdf u otros que compile LaTeX de forma natural.
+
+% PARA LOS AUTORES:
+
+%   0. Matgazine se edita en lengua castellana. Los artículos se escribirán con el apropiado gusto y esmero en la redacción, de acuerdo con nuestra guía de estilo.
+
+%   1. Se deberá respetar el código fuente del preámbulo en su totalidad, aunque no todos los paquetes sean necesarios para cada artículo.
+
+%   2. El autor podrá añadir paquetes y comandos que necesite para la escritura de su artículo que no estén en este documento, indicando claramente al final del preámbulo del fichero final .tex las órdenes que han sido añadidas.
+
+%   3. Se evitará en lo posible crear comandos tipo \newtheorem que sustituyan a otros presentes en este documento con el mismo uso. Asimismo, se recomienda no abusar de comandos redefinidos tipo \newcommand o \renewcommand, para evitar problemas de solapamiento con otros ficheros en el montaje de la revista.
+
+%   4. Se respetará la fuente, tipografía y estructura general del documento. 
+
+%   5. Se respetará íntegramente la estructura y los datos a especificar en las referencias bibliográficas.
+
+%   6. Las imágenes se incluirán en el documento fuente desde ficheros externos en los formatos arriba mencionados, mediante el comando \includegraphics. Se evitará el dibujo directo de figuras en el documento .tex del artículo para evitar problemas de compilado. Sin embargo, se recomienda encarecidamente el tratamiento de las figuras con LATEX para aunar la tipografía del texto con la de las figuras, antes de exportar dichas figuras a los formatos ya mencionados.
+
+
+% Para cualquier duda o sugerencia para la mejora de este documento, ponerse en contacto con la redacción de Matgazine. matgazine@gmail.com
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%
+% PREÁMBULO
+%%%%%%%%%%%%%%
+
+% Antes de empezar, compruebe que su soporte LaTeX compila correctamente este documento a PDFLaTeX.
+
+\documentclass[10pt, a5paper, twoside]{article} 
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\graphicspath{ {images/} }
+
+\usepackage[utf8]{inputenc} % Codificación de texto.
+\usepackage[spanish]{babel} % Idioma determinado.
+\usepackage{anysize} % Uso de márgenes.
+
+\usepackage{amsthm}  % Paquetes de la AMS
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{multicol} % Uso de varias columnas
+\usepackage{graphicx} % Uso de gráficos
+\usepackage{color} % Uso de colores
+\usepackage[table]{xcolor} % Color en tablas
+
+% Otros paquetes
+
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{marvosym}
+\usepackage{pictexwd,dcpic}
+\newtheorem{prob}{Problema}
+\theoremstyle{definition}
+\newtheorem{problema}{Problema}
+\renewcommand{\gcd}{\operatorname{mcd}}
+\usepackage{etex} 
+\usepackage{tikz}
+\usetikzlibrary{calc,3d,positioning,snakes}
+\usepackage{caption}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMANDOS Y MACROS DEFINIDOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% Márgenes
+
+\marginsize{1.5 cm}{1.5 cm}{0.5 cm}{1 cm}
+
+%%%%% Cabecera
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[LO]{\nouppercase{\leftmark}} % En las páginas impares, parte izquierda del encabezado.
+\fancyhead[RE]{\nouppercase{ \quad Introducir fecha}} % En las páginas pares, parte derecha del encabezado.
+\fancyhead[RO,LE]{\thepage} % Números de página en las esquinas de los encabezados
+
+%\setlength{\headheight}{0.8\headheight} % Aumenta la altura del encabezado.
+
+\newcommand{\marca}[1]{\markboth{#1}{}} % Sirve para introducir texto en el encabezado en una página o sección concreta.
+
+%%%%%  Page style
+
+\makeatletter
+
+\def\ps@myfancyplain{%
+    \def\@evenhead{\centerline{%
+                    \raisebox{1.4mm}{\hbox{
+                    \rule[0.6ex]{3mm}{0.6pt}% 
+                    \hspace{1.1mm}\thepage\hspace{1mm}%
+                    \rule[0.6ex]{3mm}{0.6pt}}}
+                    }}
+   \def\@oddhead{\centerline{%
+                    \raisebox{1.4mm}{\hbox{
+                    \rule[0.6ex]{3mm}{0.6pt}% 
+                    \hspace{1.1mm}\thepage\hspace{1mm}%
+                    \rule[0.6ex]{3mm}{0.6pt}}}
+                    }}                 
+}
+
+%%%%% Índice
+
+\renewcommand\tableofcontents{%\if@openright\cleardoublepage\else\clearpage\fi
+\newpage\vspace*{-16mm}\begin{center} 
+\rule{11.78cm}{1.5pt}\vspace{-4.5mm}
+\section*{Índice} \vspace{-3mm}
+\rule{11.78cm}{1.5pt}\vspace{0.5mm}
+\end{center}
+\thispagestyle{empty}%
+\vspace{3mm}
+ {\footnotesize\@starttoc{toc}}%
+}
+\makeatother
+
+\newcommand{\myn}[1]{\addcontentsline{toc}{subsection}{\hspace*{1mm}\em #1}}
+
+%%%%% Secciones 
+
+% Sección editoriales
+
+\newcommand{\Editoriales}{
+\newpage\vspace*{-16mm}\begin{center}
+\rule{11.78cm}{1.5pt}\vspace{-4.5mm}
+\section*{Editoriales} \vspace{-3mm}
+\rule{11.78cm}{1.5pt}\vspace{0.5mm}
+\end{center}\thispagestyle{myfancyplain}
+\markboth{Editoriales}{}\addtocounter{section}{1}
+\addcontentsline{toc}{section}{Editoriales}}
+
+% Pasatiempos
+
+\newcommand{\Pasatiempos}{
+\newpage\vspace*{-16mm}\begin{center}
+\rule{11.78cm}{1.5pt}\vspace{-4.5mm}
+\section*{$\spadesuit$ Pasatiempos $\spadesuit$ } \vspace{-3mm}
+\textit{\small por} \smallskip\\
+\textbf{Dawe}
+\rule{11.78cm}{1.5pt}\vspace{0.5mm}
+\end{center}\thispagestyle{myfancyplain}
+\markboth{Pasatiempos}{}\addtocounter{section}{1}
+\addcontentsline{toc}{section}{Pasatiempos}}
+
+% Resto de las secciones de la revista
+
+\newcommand{\mysection}[2]{
+\newpage\vspace*{-16mm}\begin{center}
+\rule{11.78cm}{1.5pt}\vspace{-5mm}
+\section*{#1}\vspace{-1.5mm}
+\textit{\small Sección a cargo de} \smallskip\\
+\textbf{#2}
+\vspace{0.5mm}\rule{11.78cm}{1.5pt}
+\end{center}\thispagestyle{myfancyplain}
+\markboth{#1}{}
+\addtocounter{section}{1}
+\addcontentsline{toc}{section}{#1}}
+
+%%%%% Bibliografía
+
+\newcommand{\noun}[1]{\textsc{#1}}
+\newcounter{mref}
+\newcommand{\bitem}[1]{\addtocounter{mref}{1}\bibitem[\themref]{#1}}
+
+\newenvironment{Referencias}
+{\vspace{6mm}\setcounter{mref}{0}\noindent{\bf Referencias}\smallskip\small\begin{enumerate}}	
+{\end{enumerate}\vspace{6mm}}
+
+
+%%%%% Teoremas y similares:
+
+\newtheorem{prop}{Proposición}
+\newtheorem{obs}{Observación}
+\newtheorem{teor}{Teorema}
+\newtheorem{corol}{Corolario}
+\newtheorem{lema}{Lema}
+\newtheorem{definicion}{Definición}
+\newtheorem{conj}{Conjetura}
+
+\newtheorem*{prop*}{Proposición}
+\newtheorem*{obs*}{Observación}
+\newtheorem*{teo*}{Teorema}
+\newtheorem*{coro*}{Corolario}
+\newtheorem*{lema*}{Lema}
+\newtheorem*{defi*}{Definición}
+\newtheorem*{conj*}{Conjetura}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CUERPO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Encabezado del artículo:
+
+\vspace*{-12mm}
+\begin{center}
+\subsection*{\Large Estudio de la Conjetura de Goldbach}
+\textbf{Jose A. Zamora González}
+\end{center}
+\myn{ Resumen} % Asignación para el índice
+\marca{Conjetura de Goldbach} % Asignación para las cabeceras de página
+
+\vspace{-4mm}
+
+\begin{abstract}\small
+\noindent\emph{Explicación de mi demostración de la conjetura de Goldbach.}
+\end{abstract}
+
+\subsubsection*{\S 1. Introducción}  
+
+\begin{conj*}[\textbf{Conjetura de Goldbach}]
+Todo número par mayor que $2$ puede escribirse como suma de dos números primos. \newline
+\begin{flushright}
+\textit{Christian Goldbach ($1742$)}
+\end{flushright}
+\end{conj*}
+
+En este texto se cuenta el método que he seguido en mi demostración de la conjetura.  El documento completo actualmente ocupa $38$ páginas.
+
+\subsubsection*{\S 2. Análisis de datos}
+
+Si representamos gráficamente los números pares y el número de combinaciones que existen obtendremos la siguiente gráfica:
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{comb1}
+\caption{Números pares vs Número de combinaciones}
+\label{comp1}
+\end{figure}
+
+\newpage
+
+Introducir aquí las referencias usadas:
+
+\begin{Referencias}
+    \bitem{ejemplo} \noun{Nombre del autor:} \textit{Título} \\
+    Editorial, número, volumen (año de publicación). \\[-14pt]
+    
+    \bitem{introduccion} \noun{Adolfo Quirós Gracián:} \textit{Las Medallas Fields.} \\
+    La Gaceta de la RSME, Vol 1, nº 2 (1998). \\[-14pt]
+
+\end{Referencias}
+
+\begin{flushright}\small
+\textit{Autor}\\
+\textit{Estudiante de la Universidad \ldots}\\
+{\tt correo electrónico} \\
+\end{flushright}
+
+\end{document}
